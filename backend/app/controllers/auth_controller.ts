@@ -1,4 +1,5 @@
 import User from '#models/user'
+import { loginValidator } from '#validators/login'
 import type { HttpContext } from '@adonisjs/core/http'
 import hash from '@adonisjs/core/services/hash'
 
@@ -16,7 +17,8 @@ export default class AuthController {
   }
 
   login = async ({ request, response }: HttpContext) => {
-    const { email, password } = request.body()
+    const { email, password } = await request.validateUsing(loginValidator)
+
     const user = await User.findBy('email', email)
 
     if (!user) {

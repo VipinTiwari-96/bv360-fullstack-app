@@ -23,8 +23,8 @@ const Dashboard = () => {
     getUserAndDashboardData();
   }, []);
 
-  const handleLogOutClick = () => {
-    logoutApi();
+  const handleLogOutClick = async () => {
+    await logoutApi();
     navigate("/login");
   };
 
@@ -51,7 +51,10 @@ const Dashboard = () => {
         </div>
         <div>
           {dashboardData?.map((item) => (
-            <div className="border w-44 h-32 p-1 text-sm rounded-md border-gray-400">
+            <div
+              className="border w-44 h-32 p-1 text-sm rounded-md border-gray-400"
+              key={item?.id}
+            >
               <div className="w-8 mx-auto font-bold">{item?.name}</div>
               <div className="flex  justify-between pt-2 ">
                 <div className="text-xs  pb-0">status:</div>

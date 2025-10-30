@@ -1,13 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { loginApi } from "../api";
 import { useNavigate } from "react-router-dom";
 import Input from "../shared/Input";
+import { getToken } from "../storage";
 
 const LogIn = () => {
-  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+
+  const token = getToken();
+  useEffect(() => {
+    if (token) {
+      navigate("/dashboard");
+    }
+  }, [token]);
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleLoginSubmit = async (values) => {
     try {
@@ -39,7 +48,7 @@ const LogIn = () => {
     isValid,
   } = formik;
 
-  const isDisable = !dirty || !isValid;
+  const isDisable = useMemo(() => !dirty || !isValid, [dirty, isValid]);
 
   return (
     <div className="pt-40">

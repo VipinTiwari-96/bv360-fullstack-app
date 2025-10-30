@@ -70,6 +70,7 @@ This project demonstrates a complete **authentication flow (login/logout)** and 
 | GET | `/api/user` | Get logged-in user info |
 | GET | `/api/dashboard` | Fetch mock dashboard data |
 | POST | `/api/test` | Verify JSON request handling |
+| POST | `/api/logout` | logout the user |
 
 🧠 Author
 Vipin Tiwari

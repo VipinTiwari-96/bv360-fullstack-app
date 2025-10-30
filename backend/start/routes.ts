@@ -8,10 +8,9 @@
 */
 
 import './routes/user.js'
-
 import './routes/auth.js'
 import router from '@adonisjs/core/services/router'
-const x = ''
+
 router
   .post('/test', async ({ request, response }) => {
     const data = request.body()
